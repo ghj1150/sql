@@ -1,0 +1,50 @@
+SELECT *
+FROM TAB;
+
+SELECT *
+FROM DEPARTMENT d ;
+
+SELECT DEPTNO 
+FROM DEPARTMENT d ;
+
+-- 부서 테이블의 부서 이름, 부서 번호 출력
+SELECT DNAME , DEPTNO 
+FROM DEPARTMENT d ;
+
+-- 컬럼 검색할 때 작은 따옴표로!!
+SELECT DNAME , DEPTNO 
+FROM DEPARTMENT d 
+WHERE DNAME = '기계공학과';
+
+-- 학생 수 구하기 (여러 조건으로)
+SELECT DEPTNO , COUNT(*), AVG(HEIGHT)
+FROM STUDENT s 
+GROUP BY DEPTNO ;
+
+SELECT DEPTNO , COUNT(*), AVG(HEIGHT)
+FROM STUDENT s 
+WHERE s.DEPTNO < 201
+GROUP BY DEPTNO
+HAVING COUNT(*) >= 5 ;
+
+-- 정렬
+SELECT *
+FROM STUDENT
+ORDER BY GRADE , STUDNO ; 
+-- ORDER BY GRADE DESC는 역순 정렬
+
+-- 학생 테이블의 학과 번호 출력 (중복 없이)
+SELECT DISTINCT DEPTNO
+FROM STUDENT; 
+
+-- 학생 테이블의 학과 번호, 학년에 대한 출력, 중복 제거
+SELECT DISTINCT GRADE, DEPTNO 
+FROM STUDENT;
+
+-- 부서 테이블에서 부서 이름은 "부서이름", 부서 번호는 "부서번호"라는 별명으로 조회
+SELECT DNAME 부서이름 , DEPTNO AS "부서번호"
+FROM DEPARTMENT d ;
+
+-- 학생 테이블에서 학번과 이름을 연결하여 STUDENT라는 별칭을 붙인 결과 조회
+SELECT STUDNO || ' ' ||  NAME STUDENT, CONCAT(CONCAT(STUDNO, ' '), NAME)
+FROM STUDENT;
